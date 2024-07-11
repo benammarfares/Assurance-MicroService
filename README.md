@@ -52,10 +52,10 @@
 
 <br>
 
-* Well this is my first microservice project that helped me to understand and get fimiliar with the architectture and concept.<br>
+* Well, this is my first microservice project that helped me to understand and get familiar with the architecture and concepts.<br>
 * This project wil have 2 classes to begin with :<br> 
   * Assurance Class that will have one or many AssurancePolicies .<br>
-  * figure1 shows how the approch will be in the project and I used Zikpin for auto-configuration distrubrution tracing .<br>
+  * Figure 1 shows the approach used in the project, and I used Zipkin for auto-configuration and distributed tracing.<br>
 
 
 
