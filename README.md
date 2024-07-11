@@ -10,11 +10,11 @@
   <p align="center">
       Micro Service Project about an assurance concept.
     <br />
-    <a href="https://github.com/benammarfares/Spring-RestClients"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/benammarfares/Assurance-MicroService"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
-    <a href="https://github.com/benammarfares/Spring-RestClients/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/benammarfares/Assurance-MicroService/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
   </p>
 </div>
