@@ -20,6 +20,11 @@ public class AssuranceService {
             return assuranceRepository.findAll();
      }
 
+     public AssuranceResponse getAssurance(Integer id) {
+        return  null ;
+     }
+
+
 
 
 

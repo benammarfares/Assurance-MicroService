@@ -28,4 +28,13 @@ public class AssuranceController {
         return ResponseEntity.ok(assuranceService.getAll());
     }
 
+    @GetMapping("/getAssurance/{id}")
+    public ResponseEntity<AssuranceResponse> findAssuranceById(@PathVariable Integer id)
+    {
+        return ResponseEntity.ok(assuranceService.getAssurance(id));
+    }
+
+
+
+
 }

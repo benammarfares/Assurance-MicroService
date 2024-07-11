@@ -1,24 +1,16 @@
 package com.fares.assurance;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.Date;
-
-@Entity
+import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 
-public class AssuranceClaim {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class AssuranceResponse {
     private Integer policyId;
     private String claimName;
     private Date claimDate;
@@ -28,5 +20,5 @@ public class AssuranceClaim {
     private Date claimProcessedDate;
     private double claimPayoutAmount;
 
-
+    List<PolicyAssurance> policyAssurance;
 }

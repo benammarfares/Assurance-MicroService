@@ -19,4 +19,7 @@ public class AssurancePolicyService {
         return assurancePolicyRepository.findAll();
     }
 
+
+
+
 }
