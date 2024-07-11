@@ -51,6 +51,7 @@
 ![architecture](https://github.com/user-attachments/assets/6b2316dc-bf89-43b8-8130-2b02117106ce)
 
 <br>
+
 * Well this is my first microservice project that helped me to understand and get fimiliar with the architectture and concept.<br>
 * This project wil have 2 classes to begin with :<br> 
   * Assurance Class that will have one or many AssurancePolicies .<br>
