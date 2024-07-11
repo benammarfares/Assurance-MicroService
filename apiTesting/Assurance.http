@@ -1,0 +1,18 @@
+### Find ALl Assurance
+GET http://localhost:8090/assurance/allAssurances
+
+### Create new Assurance
+POST http://localhost:8090/assurance/save
+Content-Type: application/json
+
+{
+  "id": 1,
+  "policyId": 12345,
+  "claimName": "Accident Claim",
+  "claimDate": "2023-04-01",
+  "claimDescription": "Car accident on highway",
+  "claimAmount": 5000.00,
+  "claimStatus": "Submitted",
+  "claimProcessedDate": "2023-04-10",
+  "claimPayoutAmount": 3000.00
+}
