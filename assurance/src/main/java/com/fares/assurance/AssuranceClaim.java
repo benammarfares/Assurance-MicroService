@@ -19,7 +19,6 @@ public class AssuranceClaim {
     @Id
     @GeneratedValue
     private Integer id;
-    private Integer policyId;
     private String claimName;
     private Date claimDate;
     private String claimDescription;

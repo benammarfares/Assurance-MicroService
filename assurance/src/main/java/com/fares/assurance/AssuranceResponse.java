@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 
 public class AssuranceResponse {
-    private Integer policyId;
+
     private String claimName;
     private Date claimDate;
     private String claimDescription;
@@ -19,6 +19,7 @@ public class AssuranceResponse {
     private String claimStatus;
     private Date claimProcessedDate;
     private double claimPayoutAmount;
+
 
     List<PolicyAssurance> policyAssurance;
 }

@@ -20,6 +20,7 @@ public class AssurancePolicyService {
     }
 
 
-
-
+    public List<AssurancePolicy> findPolicyByAssurance(Integer idAssurance) {
+        return assurancePolicyRepository.findAllByAssuranceId(idAssurance);
+    }
 }

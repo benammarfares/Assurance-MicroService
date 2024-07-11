@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/assurance")
+@RequestMapping("/api/v1/assurance")
 @RequiredArgsConstructor
+@ControllerAdvice
 public class AssuranceController {
 
     private final AssuranceService assuranceService;
@@ -29,10 +30,11 @@ public class AssuranceController {
     }
 
     @GetMapping("/getAssurance/{id}")
-    public ResponseEntity<AssuranceResponse> findAssuranceById(@PathVariable Integer id)
+    public ResponseEntity<AssuranceResponse>findAssuranceById(@PathVariable("id") Integer id)
     {
-        return ResponseEntity.ok(assuranceService.getAssurance(id));
+        return ResponseEntity.ok(assuranceService.getAssuranceById(id));
     }
+
 
 
 

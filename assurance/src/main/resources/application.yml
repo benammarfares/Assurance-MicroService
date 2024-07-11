@@ -6,7 +6,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 8090
+  port: 8070
 spring:
   application:
     name: assurance
@@ -22,3 +22,7 @@ spring:
       ddl-auto: create
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  config:
+    assurancePolicy-url: http://localhost:8090/api/v1/assurancePolicy

@@ -1,0 +1,14 @@
+### Create Assurance 1
+POST http://localhost:8020/api/v1/assurance/save
+Content-Type: application/json
+
+{
+  "claimName": "Accident Claim 1",
+  "claimDate": "2023-04-01",
+  "claimDescription": "Car accident on highway 1",
+  "claimAmount": 5000.00,
+  "claimStatus": "Submitted",
+  "claimProcessedDate": "2023-04-10",
+  "claimPayoutAmount": 3000.00
+}
+

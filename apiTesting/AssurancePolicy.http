@@ -1,12 +1,11 @@
 ### Find ALl Assurance
-GET http://localhost:8070/assurancePolicy/allPolicies
+GET http://localhost:8090/api/v1/assurancePolicy/allPolicies
 
 ### Create new AssurancePolicy
-POST http://localhost:8070/assurancePolicy/savePolicy
+POST http://localhost:8090/api/v1/assurancePolicy/savePolicy
 Content-Type: application/json
 
 {
-  "id": 5,
   "policyHolder": "Fares",
   "policyType": "Comprehensive",
   "policyDetails": "Full coverage including accidents, theft, and natural disasters",
@@ -14,5 +13,7 @@ Content-Type: application/json
   "amountOfAssurance": 75000.00,
   "policyStartDate": "2024-01-01",
   "policyEndDate": "2024-12-31",
-  "policyStatus": "Active"
+  "policyStatus": "Active",
+  "assuranceId": 1
+
 }

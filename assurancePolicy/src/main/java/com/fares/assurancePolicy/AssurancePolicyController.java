@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/assurancePolicy")
+@RequestMapping("/api/v1/assurancePolicy")
 @RequiredArgsConstructor
+@ControllerAdvice
 public class AssurancePolicyController {
 
     private final AssurancePolicyService assurancePolicyService;
@@ -24,6 +25,11 @@ public class AssurancePolicyController {
     @GetMapping("/allPolicies")
     public ResponseEntity<List<AssurancePolicy>> findAllPolicies() {
         return ResponseEntity.ok(assurancePolicyService.getAll());
+    }
+
+    @GetMapping("/getPolicyFromAssurance/{id}")
+    public ResponseEntity<List<AssurancePolicy>> findAllPoliciesByID(@PathVariable("id") Integer assuranceId) {
+        return ResponseEntity.ok(assurancePolicyService.findPolicyByAssurance(assuranceId));
     }
 
 
