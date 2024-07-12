@@ -31,3 +31,8 @@ Content-Type: application/json
 
 
 
+### Find ALl Assurance
+GET http://localhost:8222/api/v1/assurance/allAssurances
+
+### Find ALl AssurancePolicy
+GET http://localhost:8222/api/v1/assurancePolicy/allPolicies

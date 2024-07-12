@@ -17,4 +17,8 @@ spring:
           predicates:
             - Path=/api/v1/assurancePolicy/**
           uri: http://localhost:8090
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 

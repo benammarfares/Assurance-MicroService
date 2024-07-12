@@ -1,4 +1,4 @@
-### Find ALl Assurance
+### Find ALl AssurancePolicy
 GET http://localhost:8090/api/v1/assurancePolicy/allPolicies
 
 ### Create new AssurancePolicy
