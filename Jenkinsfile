@@ -6,7 +6,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                echo 'Building on the main branch...'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubtoken', url: 'https://github.com/benammarfares/Assurance-MicroService.git']])
             }
         }
     }
