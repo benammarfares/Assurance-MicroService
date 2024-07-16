@@ -1,7 +1,7 @@
 
 <a  align="center" name="readme-top"></a>
 
-<!--  PROJECT LOGO -->
+<!--  PROJECT LLOGO -->
 <br />
 <div align="center">
     <img src="https://github.com/user-attachments/assets/93433dcf-f7e7-4f96-9777-a90d18ff10c6" alt="Logo" width="100" height="100">
