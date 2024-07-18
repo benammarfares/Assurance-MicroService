@@ -9,6 +9,7 @@ pipeline {
         stage("Create Maven Repository") {
             steps {
                 sh 'mkdir -p /root/.m2/repository'
+                sh 'chmod -R 777 /root/.m2/repository'
             }
         }
         stage("build & SonarQube analysis") {
