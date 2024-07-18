@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.9.8-amazoncorretto-17'
+            image 'maven:3.9.2-amazoncorretto-20'
             args '-v /root/.m2:/root/.m2'
         }
     }
