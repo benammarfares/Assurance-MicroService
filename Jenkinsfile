@@ -10,6 +10,9 @@ pipeline {
             steps {
                 script {
                     dir('assurance') {
+                        // Clean the Maven local repository cache
+                        sh 'rm -rf ~/.m2/repository'
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
