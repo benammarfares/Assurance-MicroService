@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh '''
                     if [ ! -d "$HOME/.m2/repository" ]; then
-                        sudo mkdir -p "$HOME/.m2/repository"
+                        mkdir -p "$HOME/.m2/repository"
                         sudo chmod -R 777 "$HOME/.m2/repository"
                     fi
                 '''
