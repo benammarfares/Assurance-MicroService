@@ -1,31 +1,49 @@
-pipeline{
+pipeline {
+    agent any
 
-      agent {
-                docker {
-                image 'openjdk:20-jdk-slim'
+    environment {
+        // Define the SonarQube server name and the SonarQube scanner version
+        SONARQUBE_SERVER = 'sonarserver'
+        SONARQUBE_SCANNER = 'SonarQube Scanner'
+    }
 
+    tools {
+        // Specify the JDK version and SonarQube Scanner version
+        jdk 'JDK 20'
+        sonarQubeScanner "${SONARQUBE_SCANNER}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the Git repository
+                git 'https://github.com/benammarfares/Assurance-MicroService.git'
+            }
+        }
+
+        stage('Build and Analyze') {
+            steps {
+                script {
+                    // Run the SonarQube analysis
+                    withSonarQubeEnv("${SONARQUBE_SERVER}") {
+                        sh 'mvn clean verify sonar:sonar'
+                    }
                 }
             }
-        
-        stages{
+        }
 
-              stage('Quality Gate Status Check'){
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonarserver') { 
-			      sh "mvn clean sonar:sonar"
-                       	     	}
-			      timeout(time: 1, unit: 'HOURS') {
-			      def qg = waitForQualityGate()
-				      if (qg.status != 'OK') {
-					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-				      }
-                    		}
-		    	    sh "mvn clean install"
-		  
-                 	}
-               	 }  
-              }	
-		
-            }	       	     	         
+        stage('Quality Gate') {
+            steps {
+                // Wait for the SonarQube analysis report and check the quality gate status
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive the SonarQube report
+            recordIssues(tools: [sonarQube(issuePattern: '**/*.xml')])
+        }
+    }
 }
