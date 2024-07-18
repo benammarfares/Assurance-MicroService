@@ -2,14 +2,14 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.2-amazoncorretto-20'
-            args '-v $HOME/.m2:/root/.m2'
+            args '-v $HOME/.m2:/home/jenkins/.m2'
         }
     }
     stages {
         stage("Create Maven Repository") {
             steps {
-                sh 'mkdir -p /root/.m2/repository'
-                sh 'chmod -R 777 /root/.m2/repository'
+                sh 'mkdir -p /home/jenkins/.m2/repository'
+                sh 'chmod -R 777 /home/jenkins/.m2/repository'
             }
         }
         stage("build & SonarQube analysis") {
