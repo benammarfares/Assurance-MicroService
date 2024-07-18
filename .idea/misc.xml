@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/assurancePolicy/pom.xml" />
         <option value="$PROJECT_DIR$/../MicroServicee/apiGateway/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-hello-world-main/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
