@@ -10,7 +10,7 @@ pipeline {
         stage('Quality Gate Status Check') {
             steps {
                 script {
-                    dir('assurance') {
+                    dir('spring-boot-hello-world-main') {
                         // Clean the Maven local repository cache
                         sh 'rm -rf ~/.m2/repository'
 
