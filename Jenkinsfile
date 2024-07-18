@@ -20,7 +20,7 @@ pipeline {
                 dir('assurance') {
                     withSonarQubeEnv('sonarserver') {
                         echo 'Building the project'
-                        sh 'sonar:scanner'
+                        sh 'sonar-scanner'
                     }
                 }
             }
