@@ -12,7 +12,7 @@ pipeline {
                 script {
                     dir('assurance') {
                         withSonarQubeEnv('sonarserver') {
-                            echo 'Running SonarQube Scan'
+                            sh 'mvn clean package sonar:sonar'
                         }
                         timeout(time: 1, unit: 'HOURS') {
                             def qg = waitForQualityGate()
