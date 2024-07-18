@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.2-amazoncorretto-20'
+            args '-u root'
         }
     }
 
@@ -10,6 +11,9 @@ pipeline {
             steps {
                 script {
                     dir('assurance') {
+                        // Clean the Maven local repository cache
+                        sh 'rm -rf ~/.m2/repository'
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
