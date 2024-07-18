@@ -1,21 +1,24 @@
 pipeline {
-    agent none
-
+    agent {
+        docker {
+            image 'maven:3.8.7-openjdk-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     stages {
-        stage("Build & SonarQube Analysis") {
-            agent any
+        stage("build & SonarQube analysis") {
             steps {
-                withSonarQubeEnv('sonarserver') {
+                withSonarQubeEnv('My SonarQube Server') {
                     sh 'mvn clean package sonar:sonar'
                 }
             }
         }
-
         stage("Quality Gate") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
                 }
+                
             }
         }
     }
