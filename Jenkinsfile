@@ -1,12 +1,26 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8.6-openjdk-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     stages {
-        stage('Build') {
-            when {
-                branch 'main'
-            }
+        stage("build & SonarQube analysis") {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubtoken', url: 'https://github.com/benammarfares/Assurance-MicroService.git']])
+                dir('assurance') {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }    
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+                
             }
         }
     }
