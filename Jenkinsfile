@@ -9,8 +9,7 @@ pipeline {
         stage("Prepare Maven Repository") {
             steps {
                 sh '''
-                    if [ ! -d "$HOME/.m2/repository" ]; then
-                        mkdir -p "$HOME/.m2/repository"
+                    if [  -d "$HOME/.m2/repository" ]; then
                         sudo chmod -R 777 "$HOME/.m2/repository"
                     fi
                 '''
