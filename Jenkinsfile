@@ -2,10 +2,15 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.2-amazoncorretto-20'
-            args '-v /tmp/.m2:/root/.m2'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
     stages {
+        stage("Create Maven Repository") {
+            steps {
+                sh 'mkdir -p /root/.m2/repository'
+            }
+        }
         stage("build & SonarQube analysis") {
             steps {
                 dir('assurance') {
