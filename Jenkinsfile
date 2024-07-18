@@ -1,36 +1,21 @@
 pipeline {
-    agent any
-
-    environment {
-        MAVEN_HOME = '/usr/share/maven'
-        MAVEN_REPO_LOCAL = '/usr/share/maven-repo'
-        MAVEN_OPTS = '-Xmx4096m'
+    agent {
+        docker {
+            image 'maven:3.9.2-amazoncorretto-20'
+            args '-v $HOME/.m2:/root/.m2'
+        }
     }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn -s $MAVEN_HOME/conf/settings.xml -Dmaven.repo.local=$MAVEN_REPO_LOCAL clean install'
-            }
-        }
-
-        stage('SonarQube analysis') {
+        stage("Build & SonarQube Analysis") {
             steps {
                 dir('assurance') {
                     withSonarQubeEnv('sonarserver') {
-                        sh 'mvn -s $MAVEN_HOME/conf/settings.xml -Dmaven.repo.local=$MAVEN_REPO_LOCAL sonar:sonar'
+                        sh 'mvn clean package sonar:sonar'
                     }
                 }
             }
         }
-
-        stage('Quality Gate') {
+        stage("Quality Gate") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
