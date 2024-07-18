@@ -2,33 +2,25 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.2-amazoncorretto-20'
-            args '-v $HOME/.m2:/root/.m2'
         }
     }
+
     stages {
-        stage("Prepare Maven Repository") {
+        stage('Quality Gate Status Check') {
             steps {
-                sh '''
-                    if [  -d "$HOME/.m2/repository" ]; then
-                        sudo chmod -R 777 "$HOME/.m2/repository"
-                    fi
-                '''
-            }
-        }
-        stage("Build & SonarQube Analysis") {
-            steps {
-                dir('assurance') {
-                    withSonarQubeEnv('sonarserver') {
-                        echo 'Building the project'
-                        sh 'sonar-scanner'
+                script {
+                    dir('assurance') {
+                        withSonarQubeEnv('sonarserver') {
+                            sh "mvn clean sonar:sonar"
+                        }
+                        timeout(time: 1, unit: 'HOURS') {
+                            def qg = waitForQualityGate()
+                            if (qg.status != 'OK') {
+                                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            }
+                        }
+                        sh "mvn clean install"
                     }
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
                 }
             }
         }
