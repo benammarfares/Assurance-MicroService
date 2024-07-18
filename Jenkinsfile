@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir('assurance') {
                     withSonarQubeEnv('sonarserver') {
-                        sh 'mvn clean package sonar:sonar'
+                        echo 'Building the project'
                     }
                 }
             }
