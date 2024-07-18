@@ -8,8 +8,10 @@ pipeline {
     stages {
         stage("build & SonarQube analysis") {
             steps {
-                withSonarQubeEnv('sonarserver') {
-                    sh 'mvn sonar:sonar'
+                dir('Assurance') {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn sonar:sonar'
+                    }    
                 }
             }
         }
