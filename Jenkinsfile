@@ -1,11 +1,8 @@
 pipeline {
-    environment {
-        JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven"
-    }
     agent {
         docker {
             image 'maven'
-            args "-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
+            args "-v /tmp:/tmp"
         }
     }
 
@@ -14,9 +11,6 @@ pipeline {
             steps {
                 script {
                     dir('configServer') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
-
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
