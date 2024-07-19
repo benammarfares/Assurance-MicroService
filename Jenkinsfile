@@ -6,21 +6,6 @@ pipeline {
         }
     }
 
-    environment {
-        GITHUB_REPO = 'https://github.com/benammarfares/Assurance-MicroService.git'
-    }
-
-    stages {
-        stage('Checkout Code') {
-            steps {
-                checkout scm: [
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: "${env.GITHUB_REPO}"]]
-                ]
-            }
-        }
-
         stage('Build configServer') {
             steps {
                 dir('configServer') {
