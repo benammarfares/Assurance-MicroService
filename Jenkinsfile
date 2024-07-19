@@ -15,7 +15,7 @@ pipeline {
                         sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn clean package sonar:sonar'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile test"
                     }
@@ -33,7 +33,7 @@ pipeline {
                 script {
                     dir('discoveryServer') {
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn clean package sonar:sonar'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile test"
                     }
@@ -48,7 +48,7 @@ pipeline {
                     dir('assurancePolicy') {
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn clean package sonar:sonar'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile test"
                     }
@@ -62,7 +62,7 @@ pipeline {
                     dir('gateway') {
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn clean package sonar:sonar'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile test"
                     }
@@ -76,7 +76,7 @@ pipeline {
                     dir('discorveryServer') {
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn clean package sonar:sonar'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile test"
                     }
