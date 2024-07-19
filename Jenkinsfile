@@ -11,6 +11,8 @@ pipeline {
             steps {
                 script {
                     dir('configServer') {
+                        // Clean the Maven local repository cache
+                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -23,6 +25,10 @@ pipeline {
         }
 
         stage('Build discoveryServer') {
+            when {
+                // Only run this stage if the configServer build was successful
+                expression { return env.STAGE_RESULT_Build_configServer == 'SUCCESS' }
+            }
             steps {
                 script {
                     dir('discoveryServer') {
@@ -34,11 +40,13 @@ pipeline {
                     sh 'cd ..'
                 }
             }
-            // Add a dependency on the configServer build
-            dependsOn('Build configServer')
         }
 
         stage('Build gateway') {
+            when {
+                // Only run this stage if the discoveryServer build was successful
+                expression { return env.STAGE_RESULT_Build_discoveryServer == 'SUCCESS' }
+            }
             steps {
                 script {
                     dir('gateway') {
@@ -50,11 +58,13 @@ pipeline {
                     sh 'cd ..'
                 }
             }
-            // Add a dependency on the discoveryServer build
-            dependsOn('Build discoveryServer')
         }
 
         stage('Build assurance') {
+            when {
+                // Only run this stage if the gateway build was successful
+                expression { return env.STAGE_RESULT_Build_gateway == 'SUCCESS' }
+            }
             steps {
                 script {
                     dir('assurance') {
@@ -66,11 +76,13 @@ pipeline {
                     sh 'cd ..'
                 }
             }
-            // Add a dependency on the gateway build
-            dependsOn('Build gateway')
         }
 
         stage('Build assurancePolicy') {
+            when {
+                // Only run this stage if the assurance build was successful
+                expression { return env.STAGE_RESULT_Build_assurance == 'SUCCESS' }
+            }
             steps {
                 script {
                     dir('assurancePolicy') {
@@ -82,8 +94,6 @@ pipeline {
                     sh 'cd ..'
                 }
             }
-            // Add a dependency on the assurance build
-            dependsOn('Build assurance')
         }
     }
 }
