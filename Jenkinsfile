@@ -25,7 +25,7 @@ pipeline {
         stage('Build discoveryServer') {
             steps {
                 script {
-                    dir('discoveryServer') {
+                    dir('discorveryServer') {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
