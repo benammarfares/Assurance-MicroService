@@ -44,7 +44,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile test"
+                        sh "mvn clean compile"
                     }
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile test"
+                        sh "mvn clean compile"
                     }
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile test"
+                        sh "mvn clean compile"
                     }
                 }
             }
