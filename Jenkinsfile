@@ -6,6 +6,10 @@ pipeline {
         }
     }
 
+    environment {
+        GITHUB_REPO = 'https://github.com/benammarfares/Assurance-MicroService.git'
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
