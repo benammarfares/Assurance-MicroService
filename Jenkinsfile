@@ -27,8 +27,6 @@ pipeline {
             steps {
                 script {
                     dir('discoveryServer') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -43,8 +41,6 @@ pipeline {
             steps {
                 script {
                     dir('gateway') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -59,8 +55,6 @@ pipeline {
             steps {
                 script {
                     dir('assurance') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -75,8 +69,6 @@ pipeline {
             steps {
                 script {
                     dir('assurancePolicy') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
