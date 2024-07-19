@@ -19,7 +19,7 @@ pipeline {
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
+                    sh 'cd'
                 }
             }
         }
@@ -27,14 +27,14 @@ pipeline {
         stage('Build discoveryServer') {
             steps {
                 script {
-                    dir('discoveryServer') {
+                    dir('gateway') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
+                    sh 'cd'
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
         stage('Build gateway') {
             steps {
                 script {
-                    dir('gateway') {
+                    dir('discorveryServer') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
