@@ -27,7 +27,7 @@ pipeline {
         stage('Build discoveryServer') {
             steps {
                 script {
-                    dir('gateway') {
+                    dir('assurance') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -42,7 +42,7 @@ pipeline {
         stage('Build gateway') {
             steps {
                 script {
-                    dir('discorveryServer') {
+                    dir('assurancePolicy') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -56,7 +56,7 @@ pipeline {
         stage('Build assurance') {
             steps {
                 script {
-                    dir('assurance') {
+                    dir('gateway') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
@@ -70,7 +70,7 @@ pipeline {
         stage('Build assurancePolicy') {
             steps {
                 script {
-                    dir('assurancePolicy') {
+                    dir('discorveryServer') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
