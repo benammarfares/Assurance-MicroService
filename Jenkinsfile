@@ -19,6 +19,7 @@ pipeline {
                         }
                         sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
         }
@@ -33,6 +34,7 @@ pipeline {
                         }
                         sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
         }
