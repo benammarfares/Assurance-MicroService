@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven'
-            args '-u root'
+            args '-u root -v $HOME/.m2:/root/.m2'
         }
     }
 
@@ -11,8 +11,6 @@ pipeline {
             steps {
                 script {
                     dir('configServer') {
-                        // Clean the Maven local repository cache
-                        sh 'rm -rf ~/.m2/repository'
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
