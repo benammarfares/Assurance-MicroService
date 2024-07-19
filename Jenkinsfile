@@ -25,10 +25,6 @@ pipeline {
         }
 
         stage('Build discoveryServer') {
-            when {
-                // Only run this stage if the configServer build was successful
-                expression { return env.STAGE_RESULT_Build_configServer == 'SUCCESS' }
-            }
             steps {
                 script {
                     dir('discoveryServer') {
