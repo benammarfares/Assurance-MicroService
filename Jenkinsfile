@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven'
-            args '-v /tmp:/tmp'
+            args '-u root'
         }
     }
 
@@ -19,7 +19,7 @@ pipeline {
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
+                    sh 'cd'
                 }
             }
         }
@@ -43,55 +43,43 @@ pipeline {
         }
 
         stage('Build gateway') {
-            when {
-                // Only run this stage if the discoveryServer build was successful
-                expression { return env.STAGE_RESULT_Build_discoveryServer == 'SUCCESS' }
-            }
             steps {
                 script {
-                    dir('gateway') {
+                    dir('assurancePolicy') {
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
                 }
             }
         }
 
         stage('Build assurance') {
-            when {
-                // Only run this stage if the gateway build was successful
-                expression { return env.STAGE_RESULT_Build_gateway == 'SUCCESS' }
-            }
             steps {
                 script {
-                    dir('assurance') {
+                    dir('gateway') {
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
                 }
             }
         }
 
         stage('Build assurancePolicy') {
-            when {
-                // Only run this stage if the assurance build was successful
-                expression { return env.STAGE_RESULT_Build_assurance == 'SUCCESS' }
-            }
             steps {
                 script {
-                    dir('assurancePolicy') {
+                    dir('discorveryServer') {
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd ..'
                 }
             }
         }
