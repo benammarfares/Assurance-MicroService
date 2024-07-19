@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven'
-            args "-v /tmp:/tmp"
+            args '-v /tmp:/tmp'
         }
     }
 
@@ -11,12 +11,13 @@ pipeline {
             steps {
                 script {
                     dir('configServer') {
+
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd'
+                    sh 'cd ..'
                 }
             }
         }
@@ -24,58 +25,65 @@ pipeline {
         stage('Build discoveryServer') {
             steps {
                 script {
-                    dir('assurance') {
-
+                    dir('discoveryServer') {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
-                    sh 'cd'
+                    sh 'cd ..'
                 }
             }
+            // Add a dependency on the configServer build
+            dependsOn('Build configServer')
         }
 
         stage('Build gateway') {
             steps {
                 script {
-                    dir('assurancePolicy') {
-
+                    dir('gateway') {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
+            // Add a dependency on the discoveryServer build
+            dependsOn('Build discoveryServer')
         }
 
         stage('Build assurance') {
             steps {
                 script {
-                    dir('gateway') {
-
+                    dir('assurance') {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
+            // Add a dependency on the gateway build
+            dependsOn('Build gateway')
         }
 
         stage('Build assurancePolicy') {
             steps {
                 script {
-                    dir('discorveryServer') {
-
+                    dir('assurancePolicy') {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn clean package sonar:sonar'
                         }
                         sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
+            // Add a dependency on the assurance build
+            dependsOn('Build assurance')
         }
     }
 }
