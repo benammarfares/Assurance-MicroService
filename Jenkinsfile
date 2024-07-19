@@ -45,7 +45,7 @@ pipeline {
         stage('Build gateway') {
             steps {
                 script {
-                    dir('assurancePolicy') {
+                    dir('assurance') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
@@ -59,7 +59,7 @@ pipeline {
         stage('Build assurance') {
             steps {
                 script {
-                    dir('gateway') {
+                    dir('assurancePolicy') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
@@ -73,7 +73,7 @@ pipeline {
         stage('Build assurancePolicy') {
             steps {
                 script {
-                    dir('discorveryServer') {
+                    dir('gateway') {
 
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
