@@ -40,7 +40,6 @@ pipeline {
             steps {
                 script {
                     dir('assurance') {
-
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
@@ -55,7 +54,7 @@ pipeline {
             steps {
                 script {
                     dir('assurancePolicy') {
-
+                        sh "mvn clean compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
