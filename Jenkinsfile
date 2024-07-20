@@ -57,7 +57,7 @@ pipeline {
                     dir('assurancePolicy') {
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn sonar:sonar -Dsonar.sources=.'
+                            sh 'mvn sonar:sonar'
                         }
                         sh "mvn clean compile"
                     }
