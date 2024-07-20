@@ -56,7 +56,7 @@ pipeline {
                     dir('assurancePolicy') {
 
                         withSonarQubeEnv('sonarserver') {
-                            sh 'mvn sonar:sonar -Dsonar.java.binaries=target/classes'
+                            sh 'mvn sonar:sonar -Dsonar.sources=.'
                         }
                         sh "mvn clean compile"
                     }
