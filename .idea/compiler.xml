@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="assurance" />
-        <module name="spring-boot-2-hello-world" />
         <module name="discorveryServer" />
         <module name="configServer" />
         <module name="gateway" />
@@ -19,6 +18,7 @@
       <module name="apiGateway" target="20" />
       <module name="apiGateway (1)" target="20" />
       <module name="apiGateway (2)" target="20" />
+      <module name="spring-boot-2-hello-world" target="1.8" />
       <module name="springapp1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
