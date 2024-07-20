@@ -32,7 +32,7 @@
       <module name="configServer" options="-parameters" />
       <module name="discorveryServer" options="-parameters" />
       <module name="gateway" options="-parameters" />
-      <module name="spring-boot-2-hello-world" options="-parameters" />
+      <module name="spring-boot-2-hello-world" options="" />
       <module name="springapp1" options="-parameters" />
     </option>
   </component>
