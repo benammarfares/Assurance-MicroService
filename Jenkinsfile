@@ -46,6 +46,7 @@ pipeline {
                         }
                         sh "mvn clean compile"
                     }
+                    sh 'cd ..'
                 }
             }
         }
@@ -60,6 +61,7 @@ pipeline {
                         }
                         sh "mvn clean compile"
                     }
+                    sh 'cd ..'
                 }
             }
         }
@@ -74,6 +76,7 @@ pipeline {
                         }
                         sh "mvn clean compile"
                     }
+                    sh 'cd ..'
                 }
             }
         }
