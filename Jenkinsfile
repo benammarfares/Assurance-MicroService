@@ -15,7 +15,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
+                        sh "mvn clean verify"
                     }
                     sh 'cd ..'
                 }
@@ -29,7 +29,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
+                        sh "mvn clean verify"
                     }
                     sh 'cd ..'
                 }
@@ -44,7 +44,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
+                        sh "mvn clean verify"
                     }
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
+                        sh "mvn clean verify"
                     }
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
+                        sh "mvn clean verify"
                     }
                 }
             }
