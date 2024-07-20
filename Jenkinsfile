@@ -11,11 +11,10 @@ pipeline {
             steps {
                 script {
                     dir('configServer') {
-
+                        sh "mvn compiler:compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -26,10 +25,10 @@ pipeline {
             steps {
                 script {
                     dir('discorveryServer') {
+                        sh "mvn compiler:compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -40,10 +39,10 @@ pipeline {
             steps {
                 script {
                     dir('assurance') {
+                        sh "mvn compiler:compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -54,11 +53,10 @@ pipeline {
             steps {
                 script {
                     dir('assurancePolicy') {
-                        sh "mvn clean compile"
+                        sh "mvn compiler:compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -69,11 +67,10 @@ pipeline {
             steps {
                 script {
                     dir('gateway') {
-
+                        sh "mvn compiler:compile"
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
