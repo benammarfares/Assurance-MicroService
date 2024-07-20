@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Build gateway') {
+        stage('Build assurance') {
             steps {
                 script {
                     dir('assurance') {
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        stage('Build assurance') {
+        stage('Build assurancePolicy') {
             steps {
                 script {
                     dir('assurancePolicy') {
@@ -64,7 +64,7 @@ pipeline {
             }
         }
 
-        stage('Build assurancePolicy') {
+        stage('Build gateway') {
             steps {
                 script {
                     dir('gateway') {
