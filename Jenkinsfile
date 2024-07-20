@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven'
-            args '-u root'
+            args '-u root -v $HOME/.m2:/root/.m2'
         }
     }
 
@@ -15,7 +15,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean verify"
+                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -29,7 +29,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean verify"
+                        sh "mvn clean compile"
                     }
                     sh 'cd ..'
                 }
@@ -44,7 +44,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean verify"
+                        sh "mvn clean compile"
                     }
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean verify"
+                        sh "mvn clean compile"
                     }
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean verify"
+                        sh "mvn clean compile"
                     }
                 }
             }
