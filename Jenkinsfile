@@ -17,7 +17,6 @@ pipeline {
                         }
                         sh "mvn clean package"
                     }
-                    sh 'cd ..'
                 }
             }
         }
@@ -32,7 +31,6 @@ pipeline {
                         }
                         sh "mvn clean package"
                     }
-                    sh 'cd ..'
                 }
             }
         }
