@@ -15,8 +15,9 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
         }
@@ -29,8 +30,9 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                     }
+                    sh 'cd ..'
                 }
             }
         }
@@ -43,7 +45,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                     }
                     sh 'cd ..'
                 }
@@ -58,7 +60,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                     }
                     sh 'cd ..'
                 }
@@ -73,7 +75,7 @@ pipeline {
                         withSonarQubeEnv('sonarserver') {
                             sh 'mvn sonar:sonar'
                         }
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                     }
                     sh 'cd ..'
                 }
