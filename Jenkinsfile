@@ -1,4 +1,7 @@
 pipeline {
+  options {
+    skipDefaultCheckout true
+  }
     agent {
         docker {
             image 'maven'

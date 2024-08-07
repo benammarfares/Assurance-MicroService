@@ -16,7 +16,7 @@ spring:
         - id: assurancePolicy
           predicates:
             - Path=/api/v1/assurancePolicy/**
-          uri: http://localhost:8090
+          uri: http://localhost:8060
 management:
   tracing:
     sampling:

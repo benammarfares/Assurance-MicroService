@@ -1,8 +1,8 @@
 ### Find ALl AssurancePolicy
-GET http://localhost:8090/api/v1/assurancePolicy/allPolicies
+GET http://localhost:8060/api/v1/assurancePolicy/allPolicies
 
 ### Create new AssurancePolicy
-POST http://localhost:8090/api/v1/assurancePolicy/savePolicy
+POST http://localhost:8060/api/v1/assurancePolicy/savePolicy
 Content-Type: application/json
 
 {
