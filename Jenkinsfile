@@ -1,26 +1,87 @@
 pipeline {
+  options {
+    skipDefaultCheckout true
+  }
     agent {
         docker {
-            image 'maven:3.8.6-openjdk-11'
-            args '-v /root/.m2:/root/.m2'
+            image 'maven'
+            args '-u root -v $HOME/.m2:/root/.m2'
         }
     }
+
     stages {
-        stage("build & SonarQube analysis") {
+        stage('Build configServer') {
             steps {
-                dir('assurance') {
-                    withSonarQubeEnv('sonarserver') {
-                        sh 'mvn sonar:sonar'
-                    }    
+                script {
+                    dir('configServer') {
+                        sh "mvn compiler:compile"
+                        withSonarQubeEnv('sonarserver') {
+                            sh 'mvn sonar:sonar'
+                        }
+                        sh "mvn clean install"
+                    }
+                    sh 'cd ..'
                 }
             }
         }
-        stage("Quality Gate") {
+
+        stage('Build discoveryServer') {
             steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
+                script {
+                    dir('discorveryServer') {
+                        sh "mvn compiler:compile"
+                        withSonarQubeEnv('sonarserver') {
+                            sh 'mvn sonar:sonar'
+                        }
+                        sh "mvn clean install"
+                    }
+                    sh 'cd ..'
                 }
-                
+            }
+        }
+
+        stage('Build assurance') {
+            steps {
+                script {
+                    dir('assurance') {
+                        sh "mvn compiler:compile"
+                        withSonarQubeEnv('sonarserver') {
+                            sh 'mvn sonar:sonar'
+                        }
+                        sh "mvn clean install"
+                    }
+                    sh 'cd ..'
+                }
+            }
+        }
+
+        stage('Build assurancePolicy') {
+            steps {
+                script {
+                    dir('assurancePolicy') {
+                        sh "mvn compiler:compile"
+                        withSonarQubeEnv('sonarserver') {
+                            sh 'mvn sonar:sonar'
+                        }
+                        sh "mvn clean install"
+                    }
+                    sh 'cd ..'
+                }
+            }
+        }
+
+        stage('Build gateway') {
+            steps {
+                script {
+                    dir('gateway') {
+                        sh "mvn compiler:compile"
+                        withSonarQubeEnv('sonarserver') {
+                            sh 'mvn sonar:sonar'
+                        }
+                        sh "mvn clean install"
+                    }
+                    sh 'cd ..'
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ spring:
 
 application:
   config:
-    assurancePolicy-url: http://localhost:8222/api/v1/assurancePolicy
+    assurancePolicy-url: http://localhost:8060/api/v1/assurancePolicy
 management:
   tracing:
     sampling:
