@@ -1,4 +1,4 @@
 FROM openjdk:17
-COPY /target/*.jar configServer.jar
+COPY /target/*.jar configserver.jar
 EXPOSE 8888
-ENTRYPOINT ["java", "-jar", "configServer.jar"]
+ENTRYPOINT ["java", "-jar", "configserver.jar"]
